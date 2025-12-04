@@ -88,9 +88,10 @@
         src/patterns/pattern-pattern-301.patt, etc.
       -->
 
-      <!-- PLANTILLA DE FLECHA (comentario referencia)
-      position="0 1 0"  -> flecha sobre el marcador
-      scale="2 2 2"     -> tamaño visible
+      <!-- FUNCIÓN AUXILIAR: plantilla mental de flecha
+           - arrow-salaXXX        -> contenedor general (visibilidad)
+           - arrow-rotator-salaXXX-> SOLO este rota hacia el destino
+           - text-salaXXX         -> texto fijo, no rota
       -->
 
       <!-- SALA 301 (derecha) -->
@@ -105,42 +106,25 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <!-- ROTADOR (SOLO ESTO GIRA) -->
+          <a-entity id="arrow-rotator-sala301">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <!-- TEXTO FIJO DEBAJO, NO ROTA -->
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala301"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 302 (izquierda) -->
@@ -154,42 +138,24 @@
             position="0 0 0.01">
           </a-text>
         </a-plane>
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
+        <a-entity id="arrow-sala302" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala302">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala302"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 303 (derecha) -->
@@ -204,42 +170,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala303" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala303">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala303"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 304 (izquierda) -->
@@ -254,42 +201,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala304" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala304">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala304"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 305 (derecha) -->
@@ -304,42 +232,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala305" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala305">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala305"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 306 (izquierda) -->
@@ -354,42 +263,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala306" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala306">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala306"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 307 (derecha) -->
@@ -404,42 +294,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala307" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala307">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala307"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 308 (izquierda) -->
@@ -454,42 +325,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala308" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala308">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala308"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 309 (derecha) -->
@@ -504,42 +356,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala309" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala309">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala309"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
       <!-- SALA 310 (izquierda) -->
@@ -554,42 +387,23 @@
           </a-text>
         </a-plane>
 
-<a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-    
-    <!-- CONTENEDOR QUE GARANTIZA ORIENTACIÓN BASE -->
-    <a-entity id="arrow-container-sala301" rotation="-90 0 0">
+        <a-entity id="arrow-sala310" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
+          <a-entity id="arrow-rotator-sala310">
+            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
+            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
+          </a-entity>
 
-        <!-- CUERPO -->
-        <a-cylinder 
-            color="#4287f5" 
-            height="0.8" 
-            radius="0.06" 
-            position="0 0 0.4">
-        </a-cylinder>
-
-        <!-- PUNTA -->
-        <a-cone 
-            color="#4287f5" 
-            height="0.3" 
-            radius-bottom="0.15" 
-            position="0 0 0.9">
-        </a-cone>
-
-        <!-- TEXTO SIEMPRE HACIA ARRIBA -->
-        <a-entity rotation="90 0 0">
-            <a-text 
-                id="text-sala301"
-                value="Hacia destino"
-                align="center"
-                color="red"
-                position="0 0.2 0.3"
-                scale="1 1 1">
+          <a-entity rotation="-90 0 0" position="0 -0.3 0">
+            <a-text
+              id="text-sala310"
+              value="Hacia destino"
+              align="center"
+              color="red"
+              position="0 0 0"
+              scale="1 1 1">
             </a-text>
+          </a-entity>
         </a-entity>
-
-    </a-entity>
-</a-entity>
-
       </a-marker>
 
     </a-scene>
@@ -603,9 +417,9 @@
         'sala309', 'sala310'
       ];
 
-      // Mapa físico simulado.
+      // Mapa físico simulado:
       // Impares = derecha (x = 2), pares = izquierda (x = -2).
-      // Cada pareja de salas avanza 3 unidades por el pasillo (eje z).
+      // Cada pareja avanza 3 unidades por el pasillo (eje z).
       const locations = {
         'sala301': { x:  2, z:  0, offset: 0 },
         'sala302': { x: -2, z:  0, offset: 0 },
@@ -653,11 +467,12 @@
         if (!currentDestination) return;
 
         const start = locations[currentLocationId];
-        const end = locations[currentDestination];
+        const end   = locations[currentDestination];
 
         if (!start || !end) return;
 
         const arrowEntity = document.getElementById('arrow-' + currentLocationId);
+        const rotator     = document.getElementById('arrow-rotator-' + currentLocationId);
         const textEntity  = document.getElementById('text-' + currentLocationId);
 
         // Si ya estás en el destino
@@ -678,9 +493,12 @@
         let angleDeg = Math.atan2(dx, dz) * (180 / Math.PI);
         const totalRotation = angleDeg + (start.offset || 0);
 
+        if (rotator) {
+          // Rotamos solo el rotador (flecha), el texto queda fijo
+          rotator.setAttribute('rotation', `0 ${totalRotation} 0`);
+        }
+
         if (arrowEntity) {
-          // Rotación horizontal sobre el eje Y
-          arrowEntity.setAttribute('rotation', `0 ${totalRotation} 0`);
           arrowEntity.setAttribute('visible', 'true');
         }
 
