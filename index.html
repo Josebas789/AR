@@ -1,494 +1,287 @@
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Guía RA Sede – Señalética</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
-    <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-        font-family: sans-serif;
-      }
-      #ui-container {
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-        pointer-events: none;
-      }
-      .selector-box {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 10px 20px;
-        border-radius: 20px;
-        pointer-events: auto;
-        display: inline-block;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
-      select {
-        padding: 8px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
-      #instruction {
-        margin: 5px 0 0 0;
-        font-size: 0.8em;
-        color: #555;
-      }
-    </style>
-  </head>
+<head>
+  <title>AR Neon Navigation</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
+  <style>
+    body { margin:0; overflow:hidden; font-family:sans-serif; }
+    #ui-container { position:absolute; top:10px; left:0; width:100%; text-align:center; z-index:10; pointer-events:none; }
+    .selector-box {
+      background:rgba(255,255,255,0.9); padding:10px 20px; border-radius:20px;
+      pointer-events:auto; display:inline-block; box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    }
+    select { padding:8px; font-size:16px; border-radius:5px; }
+  </style>
+</head>
 
-  <body>
+<body>
 
-    <!-- UI Selección de destino -->
-    <div id="ui-container">
-      <div class="selector-box">
-        <label for="destination">🎯 Destino: </label>
-        <select id="destination" onchange="updateDestination()">
-          <option value="">-- Selecciona una sala --</option>
-          <option value="sala301">Sala 301</option>
-          <option value="sala302">Sala 302</option>
-          <option value="sala303">Sala 303</option>
-          <option value="sala304">Sala 304</option>
-          <option value="sala305">Sala 305</option>
-          <option value="sala306">Sala 306</option>
-          <option value="sala307">Sala 307</option>
-          <option value="sala308">Sala 308</option>
-          <option value="sala309">Sala 309</option>
-          <option value="sala310">Sala 310</option>
-        </select>
-        <p id="instruction">Selecciona una sala y escanea un marcador.</p>
-      </div>
-    </div>
+<div id="ui-container">
+  <div class="selector-box">
+    <label>🎯 Destino: </label>
+    <select id="destination" onchange="updateDestination()">
+      <option value="">-- Selecciona una sala --</option>
+      <option value="sala301">Sala 301</option>
+      <option value="sala302">Sala 302</option>
+      <option value="sala303">Sala 303</option>
+      <option value="sala304">Sala 304</option>
+      <option value="sala305">Sala 305</option>
+      <option value="sala306">Sala 306</option>
+      <option value="sala307">Sala 307</option>
+      <option value="sala308">Sala 308</option>
+      <option value="sala309">Sala 309</option>
+      <option value="sala310">Sala 310</option>
+    </select>
+    <p id="instruction">Selecciona una sala y escanea un marcador.</p>
+  </div>
+</div>
 
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false">
-      <a-entity camera></a-entity>
+<a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false">
+  <a-entity camera></a-entity>
 
-      <!--
-        Cada marcador:
-        - Cartel azul con texto señalética (blanco con borde negro).
-        - Debajo, texto direccional dinámico con el mismo estilo.
-      -->
+  <!-- SVG neon arrows -->
+  <script id="arrow-right-svg" type="text/plain">
+  <svg width="512" height="256" viewBox="0 0 512 256" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <polygon points="0,96 360,96 360,32 512,128 360,224 360,160 0,160"
+             fill="#00eaff" filter="url(#glow)"/>
+  </svg>
+  </script>
 
-      <!-- SALA 301 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt" id="marker-sala301">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 301\nRealidad aumentada"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+  <script id="arrow-left-svg" type="text/plain">
+  <svg width="512" height="256" viewBox="0 0 512 256" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow2">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <polygon points="512,96 152,96 152,32 0,128 152,224 152,160 512,160"
+             fill="#00eaff" filter="url(#glow2)"/>
+  </svg>
+  </script>
 
-          <a-text
-            id="dir-sala301"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+  <script>
+    function svgToBase64(id) {
+      return "data:image/svg+xml;base64," + btoa(document.getElementById(id).textContent);
+    }
+    const ARROW_RIGHT = svgToBase64("arrow-right-svg");
+    const ARROW_LEFT  = svgToBase64("arrow-left-svg");
+  </script>
 
-      <!-- SALA 302 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-302.patt" id="marker-sala302">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 302\nIntroducción a la graduación"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+  <!-- Generate markers -->
 
-          <a-text
-            id="dir-sala302"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt" id="marker-sala301">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 301\nRealidad aumentada" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-      <!-- SALA 303 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-303.patt" id="marker-sala303">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 303\nLaboratorio de computación"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+      <a-text id="dir-sala301" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-          <a-text
-            id="dir-sala303"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala301" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-      <!-- SALA 304 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-304.patt" id="marker-sala304">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 304\nAgronegocios digitales"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-302.patt" id="marker-sala302">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 302\nIntroducción a la graduación" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-          <a-text
-            id="dir-sala304"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <a-text id="dir-sala302" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-      <!-- SALA 305 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-305.patt" id="marker-sala305">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 305\nEstadística aplicada"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala302" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-          <a-text
-            id="dir-sala305"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-303.patt" id="marker-sala303">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 303\nLaboratorio de computación" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-      <!-- SALA 306 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-306.patt" id="marker-sala306">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 306\nQuímica general"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+      <a-text id="dir-sala303" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-          <a-text
-            id="dir-sala306"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala303" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-      <!-- SALA 307 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-307.patt" id="marker-sala307">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 307\nGeografía física"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-304.patt" id="marker-sala304">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 304\nAgronegocios digitales" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-          <a-text
-            id="dir-sala307"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <a-text id="dir-sala304" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-      <!-- SALA 308 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-308.patt" id="marker-sala308">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 308\nGeología histórica"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala304" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-          <a-text
-            id="dir-sala308"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-305.patt" id="marker-sala305">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 305\nEstadística aplicada" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-      <!-- SALA 309 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-309.patt" id="marker-sala309">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 309\nIntroducción a la geología"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+      <a-text id="dir-sala305" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-          <a-text
-            id="dir-sala309"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala305" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-      <!-- SALA 310 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-310.patt" id="marker-sala310">
-        <a-entity rotation="-90 0 0">
-          <a-plane position="0 0.6 0" width="1.7" height="0.7" color="#1976D2" side="double">
-            <a-text
-              value="Sala 310\nTaller de ética"
-              align="center"
-              width="1.5"
-              shader="msdf"
-              font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-              negate="false"
-              color="white"
-              stroke-color="black"
-              stroke-width="0.04"
-              position="0 0 0.01">
-            </a-text>
-          </a-plane>
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-306.patt" id="marker-sala306">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 306\nQuímica general" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-          <a-text
-            id="dir-sala310"
-            value=""
-            align="center"
-            width="2.5"
-            shader="msdf"
-            font="https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/roboto/Roboto-Regular.json"
-            negate="false"
-            color="white"
-            stroke-color="black"
-            stroke-width="0.05"
-            position="0 0.1 0.08">
-          </a-text>
-        </a-entity>
-      </a-marker>
+      <a-text id="dir-sala306" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-    </a-scene>
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala306" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-    <script>
-      const roomIds = [
-        'sala301','sala302','sala303','sala304','sala305',
-        'sala306','sala307','sala308','sala309','sala310'
-      ];
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-307.patt" id="marker-sala307">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 307\nGeografía física" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-      let currentDestination = null;
+      <a-text id="dir-sala307" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-      function updateDestination() {
-        currentDestination = document.getElementById('destination').value;
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala307" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-        // limpiar textos
-        roomIds.forEach(id => {
-          const el = document.getElementById('dir-' + id);
-          if (el) el.setAttribute('value', '');
-        });
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-308.patt" id="marker-sala308">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 308\nGeología histórica" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-        const instruction = document.getElementById('instruction');
-        if (currentDestination) {
-          instruction.innerText =
-            "Escanea un marcador para ver la ruta hacia " +
-            currentDestination.replace("sala", "Sala ");
-        } else {
-          instruction.innerText = "Selecciona una sala y escanea un marcador.";
-        }
-      }
+      <a-text id="dir-sala308" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-      // num = 304 → level = 1, isEven = true
-      function getRoomInfo(roomId) {
-        const num = parseInt(roomId.replace('sala',''), 10);
-        const level = Math.floor((num - 301) / 2); // 301–302:0, 303–304:1, 305–306:2...
-        const isEven = (num % 2 === 0);
-        return { num, level, isEven };
-      }
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala308" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-      function calculateDirection(currentId) {
-        if (!currentDestination) return;
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-309.patt" id="marker-sala309">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 309\nIntroducción a la geología" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-        const dirEl = document.getElementById('dir-' + currentId);
-        if (!dirEl) return;
+      <a-text id="dir-sala309" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-        if (currentId === currentDestination) {
-          dirEl.setAttribute('value', "✔ Estás en la sala destino");
-          return;
-        }
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala309" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-        const curr = getRoomInfo(currentId);
-        const dest = getRoomInfo(currentDestination);
+  <a-marker type="pattern" url="src/patterns/pattern-pattern-310.patt" id="marker-sala310">
+    <a-entity rotation="-90 0 0">
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text value="Sala 310\nTaller de ética" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      </a-plane>
 
-        let arrow;
+      <a-text id="dir-sala310" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
 
-        // Si mira a pares (izquierda): más arriba = derecha (->)
-        // Si mira a impares (derecha): más arriba = izquierda (<-)
-        if (curr.isEven) {
-          arrow = (dest.level > curr.level) ? '->' : '<-';
-        } else {
-          arrow = (dest.level > curr.level) ? '<-' : '->';
-        }
+      <!-- Neon arrow -->
+      <a-image id="arrow-img-sala310" src="" width="1.4" height="0.45"
+               position="0 0.35 0.05" visible="false"></a-image>
+    </a-entity>
+  </a-marker>
 
-        const label = currentDestination.replace('sala','Sala ');
-        dirEl.setAttribute('value', arrow + " Hacia " + label);
-      }
+</a-scene>
 
-      window.addEventListener('DOMContentLoaded', () => {
-        roomIds.forEach(id => {
-          const marker = document.getElementById('marker-' + id);
-          if (marker) {
-            marker.addEventListener('markerFound', () => {
-              calculateDirection(id);
-            });
-          }
-        });
-      });
-    </script>
+<script>
+const roomIds = [
+  'sala301','sala302','sala303','sala304','sala305',
+  'sala306','sala307','sala308','sala309','sala310'
+];
 
-  </body>
+let currentDestination = null;
+
+function updateDestination() {
+  currentDestination = document.getElementById('destination').value;
+
+  roomIds.forEach(id => {
+    document.getElementById('dir-' + id)?.setAttribute('value', '');
+    document.getElementById('arrow-img-' + id)?.setAttribute('visible', false);
+  });
+
+  document.getElementById('instruction').innerText =
+    currentDestination ?
+      "Escanea un marcador para ver la ruta hacia " + currentDestination.replace("sala","Sala ")
+      : "Selecciona una sala y escanea un marcador.";
+}
+
+function getRoomInfo(roomId) {
+  const num = parseInt(roomId.replace('sala', ''), 10);
+  const level = num - 301; // 301→0, 302→1, ..., 310→9
+  const isEven = (num % 2 === 0);
+  return { num, level, isEven };
+}
+
+
+function calculateDirection(currentId) {
+  if (!currentDestination) return;
+
+  const dirEl = document.getElementById('dir-' + currentId);
+  const arrowImg = document.getElementById('arrow-img-' + currentId);
+
+  if (currentId === currentDestination) {
+    dirEl.setAttribute('value', "✔ Estás en la sala destino");
+    arrowImg.setAttribute('visible', false);
+    return;
+  }
+
+  const curr = getRoomInfo(currentId);
+  const dest = getRoomInfo(currentDestination);
+  let arrow;
+
+  if (curr.isEven) arrow = (dest.level > curr.level) ? '->' : '<-';
+  else arrow = (dest.level > curr.level) ? '<-' : '->';
+
+  dirEl.setAttribute('value', " Hacia " + currentDestination.replace("sala","Sala "));
+
+  arrowImg.setAttribute("src", arrow === "->" ? ARROW_RIGHT : ARROW_LEFT);
+  arrowImg.setAttribute("visible", true);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  roomIds.forEach(id => {
+    document.getElementById("marker-" + id)
+      ?.addEventListener("markerFound", () => calculateDirection(id));
+  });
+});
+</script>
+
+</body>
 </html>
