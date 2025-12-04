@@ -215,24 +215,6 @@
         'sala306','sala307','sala308','sala309','sala310'
       ];
 
-      // Índice de orden en el pasillo.
-      // Mientras más alto el índice, más "a la derecha" en tu mapa.
-      // Lo armamos para cumplir:
-      // - Desde 304 a 306 → "<-"
-      // - Desde 304 a 302 → "->"
-      const orderIndex = {
-        sala301: 4,
-        sala302: 4,
-        sala303: 3,
-        sala304: 3,
-        sala305: 2,
-        sala306: 2,
-        sala307: 1,
-        sala308: 1,
-        sala309: 0,
-        sala310: 0
-      };
-
       let currentDestination = null;
 
       function updateDestination() {
@@ -254,6 +236,15 @@
         }
       }
 
+      // A partir de "sala304" obtiene:
+      // num = 304, nivel = 1, esPar = true
+      function getRoomInfo(roomId) {
+        const num = parseInt(roomId.replace('sala', ''), 10);
+        const level = Math.floor((num - 301) / 2); // 301-302:0, 303-304:1, ..., 309-310:4
+        const isEven = (num % 2 === 0);
+        return { num, level, isEven };
+      }
+
       function calculateDirection(currentId) {
         if (!currentDestination) return;
 
@@ -265,16 +256,19 @@
           return;
         }
 
-        const currIdx = orderIndex[currentId];
-        const destIdx = orderIndex[currentDestination];
+        const curr = getRoomInfo(currentId);
+        const dest = getRoomInfo(currentDestination);
 
         let arrow;
-        if (destIdx > currIdx) {
-          arrow = "->";
-        } else if (destIdx < currIdx) {
-          arrow = "<-";
+
+        if (curr.isEven) {
+          // Mirando salas pares (izquierda):
+          // lo que está más arriba (nivel mayor) está a la DERECHA
+          arrow = (dest.level > curr.level) ? '->' : '<-';
         } else {
-          arrow = "-";
+          // Mirando salas impares (derecha):
+          // lo que está más arriba está a la IZQUIERDA
+          arrow = (dest.level > curr.level) ? '<-' : '->';
         }
 
         const label = currentDestination.replace("sala", "Sala ");
