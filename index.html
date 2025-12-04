@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Guía RA Sede - Navegación Salas 301-310</title>
-    <!-- A-Frame -->
+    <title>Guía RA Sede - Navegación simple</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <!-- AR.js para A-Frame -->
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
 
     <style>
@@ -13,7 +11,6 @@
         overflow: hidden;
         font-family: sans-serif;
       }
-
       #ui-container {
         position: absolute;
         top: 10px;
@@ -23,7 +20,6 @@
         z-index: 10;
         pointer-events: none;
       }
-
       .selector-box {
         background: rgba(255, 255, 255, 0.9);
         padding: 10px 20px;
@@ -32,14 +28,12 @@
         display: inline-block;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       }
-
       select {
         padding: 8px;
         font-size: 16px;
         border-radius: 5px;
         border: 1px solid #ccc;
       }
-
       #instruction {
         margin: 5px 0 0 0;
         font-size: 0.8em;
@@ -49,7 +43,7 @@
   </head>
   <body>
 
-    <!-- UI: selector de destino -->
+    <!-- UI arriba: elegir sala destino -->
     <div id="ui-container">
       <div class="selector-box">
         <label for="destination">🎯 Destino: </label>
@@ -72,30 +66,25 @@
       </div>
     </div>
 
-    <!-- Escena AR -->
     <a-scene
       embedded
       vr-mode-ui="enabled: false"
-      renderer="logarithmicDepthBuffer: true"
-      arjs="sourceType: webcam; debugUIEnabled: false;">
-      
+      arjs="sourceType: webcam; debugUIEnabled: false">
+
       <a-entity camera></a-entity>
       <a-light type="ambient" color="#ffffff"></a-light>
 
       <!--
-        MARCADORES SALAS 301–310
-        Usa los mismos patrones que tu archivo original:
-        src/patterns/pattern-pattern-301.patt, etc.
+        Cada marcador:
+        - Panel azul con nombre de la sala (como en tu archivo original).
+        - Debajo, un texto que mostraremos como:
+          "← Hacia Sala 306"
+        TODO plano, sin rotaciones raras.
       -->
 
-      <!-- FUNCIÓN AUXILIAR: plantilla mental de flecha
-           - arrow-salaXXX        -> contenedor general (visibilidad)
-           - arrow-rotator-salaXXX-> SOLO este rota hacia el destino
-           - text-salaXXX         -> texto fijo, no rota
-      -->
-
-      <!-- SALA 301 (derecha) -->
+      <!-- SALA 301 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt" id="marker-sala301">
+        <!-- Panel azul (como antes) -->
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
             value="Sala 301\nRealidad aumentada"
@@ -106,32 +95,23 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala301" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <!-- ROTADOR (SOLO ESTO GIRA) -->
-          <a-entity id="arrow-rotator-sala301">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <!-- TEXTO FIJO DEBAJO, NO ROTA -->
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala301"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <!-- Texto de dirección debajo (flecha + frase) -->
+        <a-text
+          id="dir-sala301"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 302 (izquierda) -->
+      <!-- SALA 302 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-302.patt" id="marker-sala302">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
-            value="Sala 302\nIntroducción"
+            value="Sala 302\nIntroducción a la graduación"
             align="center"
             width="1.6"
             color="#FFFFFF"
@@ -139,26 +119,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala302" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala302">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala302"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala302"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 303 (derecha) -->
+      <!-- SALA 303 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-303.patt" id="marker-sala303">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -170,26 +142,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala303" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala303">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala303"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala303"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 304 (izquierda) -->
+      <!-- SALA 304 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-304.patt" id="marker-sala304">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -201,26 +165,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala304" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala304">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala304"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala304"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 305 (derecha) -->
+      <!-- SALA 305 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-305.patt" id="marker-sala305">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -232,26 +188,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala305" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala305">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala305"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala305"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 306 (izquierda) -->
+      <!-- SALA 306 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-306.patt" id="marker-sala306">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -263,26 +211,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala306" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala306">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala306"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala306"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 307 (derecha) -->
+      <!-- SALA 307 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-307.patt" id="marker-sala307">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -294,26 +234,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala307" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala307">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala307"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala307"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 308 (izquierda) -->
+      <!-- SALA 308 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-308.patt" id="marker-sala308">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -325,26 +257,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala308" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala308">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala308"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala308"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 309 (derecha) -->
+      <!-- SALA 309 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-309.patt" id="marker-sala309">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -356,26 +280,18 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala309" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala309">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala309"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala309"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
-      <!-- SALA 310 (izquierda) -->
+      <!-- SALA 310 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-310.patt" id="marker-sala310">
         <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
           <a-text
@@ -387,54 +303,44 @@
           </a-text>
         </a-plane>
 
-        <a-entity id="arrow-sala310" visible="false" position="0 0.4 0" scale="1.5 1.5 1.5">
-          <a-entity id="arrow-rotator-sala310">
-            <a-cylinder color="#4287f5" height="0.8" radius="0.06" position="0 0 0.4" rotation="90 0 0"></a-cylinder>
-            <a-cone     color="#4287f5" height="0.3" radius-bottom="0.15" position="0 0 0.9" rotation="90 0 0"></a-cone>
-          </a-entity>
-
-          <a-entity rotation="-90 0 0" position="0 -0.3 0">
-            <a-text
-              id="text-sala310"
-              value="Hacia destino"
-              align="center"
-              color="red"
-              position="0 0 0"
-              scale="1 1 1">
-            </a-text>
-          </a-entity>
-        </a-entity>
+        <a-text
+          id="dir-sala310"
+          value=""
+          align="center"
+          width="2"
+          color="black"
+          position="0 0.1 0.01"
+          rotation="-90 0 0">
+        </a-text>
       </a-marker>
 
     </a-scene>
 
     <script>
       const roomIds = [
-        'sala301', 'sala302',
-        'sala303', 'sala304',
-        'sala305', 'sala306',
-        'sala307', 'sala308',
-        'sala309', 'sala310'
+        'sala301','sala302',
+        'sala303','sala304',
+        'sala305','sala306',
+        'sala307','sala308',
+        'sala309','sala310'
       ];
 
-      // Mapa físico simulado:
-      // Impares = derecha (x = 2), pares = izquierda (x = -2).
-      // Cada pareja avanza 3 unidades por el pasillo (eje z).
+      // Mapa físico simulado: impares derecha (x=2), pares izquierda (x=-2), z avanzando.
       const locations = {
-        'sala301': { x:  2, z:  0, offset: 0 },
-        'sala302': { x: -2, z:  0, offset: 0 },
+        'sala301': { x:  2, z:  0 },
+        'sala302': { x: -2, z:  0 },
 
-        'sala303': { x:  2, z:  3, offset: 0 },
-        'sala304': { x: -2, z:  3, offset: 0 },
+        'sala303': { x:  2, z:  3 },
+        'sala304': { x: -2, z:  3 },
 
-        'sala305': { x:  2, z:  6, offset: 0 },
-        'sala306': { x: -2, z:  6, offset: 0 },
+        'sala305': { x:  2, z:  6 },
+        'sala306': { x: -2, z:  6 },
 
-        'sala307': { x:  2, z:  9, offset: 0 },
-        'sala308': { x: -2, z:  9, offset: 0 },
+        'sala307': { x:  2, z:  9 },
+        'sala308': { x: -2, z:  9 },
 
-        'sala309': { x:  2, z: 12, offset: 0 },
-        'sala310': { x: -2, z: 12, offset: 0 }
+        'sala309': { x:  2, z: 12 },
+        'sala310': { x: -2, z: 12 }
       };
 
       let currentDestination = null;
@@ -444,75 +350,57 @@
         currentDestination = select.value;
         const instruction = document.getElementById('instruction');
 
+        // Limpio textos cuando cambio destino
+        roomIds.forEach(id => {
+          const dir = document.getElementById('dir-' + id);
+          if (dir) dir.setAttribute('value', '');
+        });
+
         if (currentDestination) {
           const label = currentDestination.replace('sala', 'Sala ');
           instruction.innerText = "Escanea un marcador para ver la ruta hacia " + label;
-          hideAllArrows();
         } else {
           instruction.innerText = "Selecciona una sala y escanea un marcador.";
-          hideAllArrows();
         }
       }
 
-      function hideAllArrows() {
-        roomIds.forEach(id => {
-          const arrow = document.getElementById('arrow-' + id);
-          if (arrow) {
-            arrow.setAttribute('visible', 'false');
-          }
-        });
-      }
-
-      function calculateDirection(currentLocationId) {
+      function calculateDirection(currentId) {
         if (!currentDestination) return;
 
-        const start = locations[currentLocationId];
+        const start = locations[currentId];
         const end   = locations[currentDestination];
+        const dirEl = document.getElementById('dir-' + currentId);
 
-        if (!start || !end) return;
+        if (!start || !end || !dirEl) return;
 
-        const arrowEntity = document.getElementById('arrow-' + currentLocationId);
-        const rotator     = document.getElementById('arrow-rotator-' + currentLocationId);
-        const textEntity  = document.getElementById('text-' + currentLocationId);
-
-        // Si ya estás en el destino
-        if (currentLocationId === currentDestination) {
-          if (textEntity) {
-            textEntity.setAttribute('value', "¡Has llegado!");
-          }
-          if (arrowEntity) {
-            arrowEntity.setAttribute('visible', 'false');
-          }
+        if (currentId === currentDestination) {
+          dirEl.setAttribute('value', "✔ Estás en la sala destino");
           return;
         }
 
-        // Cálculo del ángulo en el plano 2D
         const dx = end.x - start.x;
         const dz = end.z - start.z;
 
-        let angleDeg = Math.atan2(dx, dz) * (180 / Math.PI);
-        const totalRotation = angleDeg + (start.offset || 0);
-
-        if (rotator) {
-          // Rotamos solo el rotador (flecha), el texto queda fijo
-          rotator.setAttribute('rotation', `0 ${totalRotation} 0`);
+        let arrow = '';
+        // Decidimos flecha según qué cambio es mayor: horizontal (x) o a lo largo del pasillo (z)
+        if (Math.abs(dx) >= Math.abs(dz)) {
+          // movimiento principal izquierda / derecha
+          arrow = dx > 0 ? '→' : '←';
+        } else {
+          // movimiento principal adelante / atrás por el pasillo
+          arrow = dz > 0 ? '⬆' : '⬇';
         }
 
-        if (arrowEntity) {
-          arrowEntity.setAttribute('visible', 'true');
-        }
-
-        if (textEntity) {
-          const label = currentDestination.replace('sala', 'Sala ');
-          textEntity.setAttribute('value', "Ir a " + label);
-        }
+        const label = currentDestination.replace('sala', 'Sala ');
+        dirEl.setAttribute('value', arrow + " Hacia " + label);
       }
 
+      // Conecto cada marcador con la lógica
       window.addEventListener('DOMContentLoaded', () => {
         roomIds.forEach(id => {
-          const markerEl = document.getElementById('marker-' + id);
-          if (markerEl) {
-            markerEl.addEventListener('markerFound', () => {
+          const marker = document.getElementById('marker-' + id);
+          if (marker) {
+            marker.addEventListener('markerFound', () => {
               calculateDirection(id);
             });
           }
