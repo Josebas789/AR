@@ -373,97 +373,49 @@
         }
       }
 
-<script>
-  const roomIds = [
-    'sala301','sala302',
-    'sala303','sala304',
-    'sala305','sala306',
-    'sala307','sala308',
-    'sala309','sala310'
-  ];
+      function calculateDirection(currentId) {
+        if (!currentDestination) return;
 
-  const locations = {
-    'sala301': { x:  2, z:  0 },
-    'sala302': { x: -2, z:  0 },
+        const start = locations[currentId];
+        const end   = locations[currentDestination];
+        const dirEl = document.getElementById('dir-' + currentId);
 
-    'sala303': { x:  2, z:  3 },
-    'sala304': { x: -2, z:  3 },
+        if (!start || !end || !dirEl) return;
 
-    'sala305': { x:  2, z:  6 },
-    'sala306': { x: -2, z:  6 },
+        // Si ya estás en la sala destino
+        if (currentId === currentDestination) {
+          dirEl.setAttribute('value', "✔ Estás en la sala destino");
+          return;
+        }
 
-    'sala307': { x:  2, z:  9 },
-    'sala308': { x: -2, z:  9 },
+        const dx = end.x - start.x;
+        const dz = end.z - start.z;
 
-    'sala309': { x:  2, z: 12 },
-    'sala310': { x: -2, z: 12 }
-  };
+        let arrow = '';
 
-  let currentDestination = null;
+        // Usamos SOLO caracteres ASCII que A-Frame sí dibuja
+        if (Math.abs(dx) >= Math.abs(dz)) {
+          // movimiento principal izquierda / derecha
+          arrow = dx > 0 ? '->' : '<-';
+        } else {
+          // movimiento principal adelante / atrás por el pasillo
+          arrow = dz > 0 ? '^' : 'v';
+        }
 
-  function updateDestination() {
-    const select = document.getElementById('destination');
-    currentDestination = select.value;
-    const instruction = document.getElementById('instruction');
-
-    // Limpiar todos los textos de dirección
-    roomIds.forEach(id => {
-      const el = document.getElementById('dir-' + id);
-      if (el) el.setAttribute('value', '');
-    });
-
-    if (currentDestination) {
-      const label = currentDestination.replace('sala', 'Sala ');
-      instruction.innerText = "Escanea un marcador para ver la ruta hacia " + label;
-    } else {
-      instruction.innerText = "Selecciona una sala y escanea un marcador.";
-    }
-  }
-
-  function calculateDirection(currentId) {
-    if (!currentDestination) return;
-
-    const start = locations[currentId];
-    const end   = locations[currentDestination];
-    const dirEl = document.getElementById('dir-' + currentId);
-
-    if (!start || !end || !dirEl) return;
-
-    // Si ya estás en la sala destino
-    if (currentId === currentDestination) {
-      dirEl.setAttribute('value', "✔ Estás en la sala destino");
-      return;
-    }
-
-    const dx = end.x - start.x;
-    const dz = end.z - start.z;
-
-    let arrow = '';
-
-    // Usamos SOLO caracteres ASCII que A-Frame sí dibuja
-    if (Math.abs(dx) >= Math.abs(dz)) {
-      // movimiento principal izquierda / derecha
-      arrow = dx > 0 ? '->' : '<-';
-    } else {
-      // movimiento principal adelante / atrás por el pasillo
-      arrow = dz > 0 ? '^' : 'v';
-    }
-
-    const label = currentDestination.replace('sala', 'Sala ');
-    dirEl.setAttribute('value', arrow + " Hacia " + label);
-  }
-
-  window.addEventListener('DOMContentLoaded', () => {
-    roomIds.forEach(id => {
-      const marker = document.getElementById('marker-' + id);
-      if (marker) {
-        marker.addEventListener('markerFound', () => {
-          calculateDirection(id);
-        });
+        const label = currentDestination.replace('sala', 'Sala ');
+        dirEl.setAttribute('value', arrow + " Hacia " + label);
       }
-    });
-  });
-</script>
 
+      window.addEventListener('DOMContentLoaded', () => {
+        roomIds.forEach(id => {
+          const marker = document.getElementById('marker-' + id);
+          if (marker) {
+            marker.addEventListener('markerFound', () => {
+              calculateDirection(id);
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
