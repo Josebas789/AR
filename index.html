@@ -1,71 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Guía RA Sede - Navegación simple</title>
+    <title>Prueba Sala 301 simple</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
-
     <style>
       body {
         margin: 0;
         overflow: hidden;
-        font-family: sans-serif;
-      }
-      #ui-container {
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 100%;
-        text-align: center;
-        z-index: 10;
-        pointer-events: none;
-      }
-      .selector-box {
-        background: rgba(255, 255, 255, 0.9);
-        padding: 10px 20px;
-        border-radius: 20px;
-        pointer-events: auto;
-        display: inline-block;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      }
-      select {
-        padding: 8px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-      }
-      #instruction {
-        margin: 5px 0 0 0;
-        font-size: 0.8em;
-        color: #555;
       }
     </style>
   </head>
   <body>
-
-    <!-- UI arriba: elegir sala destino -->
-    <div id="ui-container">
-      <div class="selector-box">
-        <label for="destination">🎯 Destino: </label>
-        <select id="destination" onchange="updateDestination()">
-          <option value="">-- Selecciona una sala --</option>
-          <option value="sala301">Sala 301</option>
-          <option value="sala302">Sala 302</option>
-          <option value="sala303">Sala 303</option>
-          <option value="sala304">Sala 304</option>
-          <option value="sala305">Sala 305</option>
-          <option value="sala306">Sala 306</option>
-          <option value="sala307">Sala 307</option>
-          <option value="sala308">Sala 308</option>
-          <option value="sala309">Sala 309</option>
-          <option value="sala310">Sala 310</option>
-        </select>
-        <p id="instruction">
-          Selecciona una sala y escanea un marcador.
-        </p>
-      </div>
-    </div>
-
     <a-scene
       embedded
       vr-mode-ui="enabled: false"
@@ -74,20 +20,13 @@
       <a-entity camera></a-entity>
       <a-light type="ambient" color="#ffffff"></a-light>
 
-      <!--
-        Cada marcador:
-        - Panel azul con nombre de la sala (como en tu archivo original).
-        - Debajo, un texto que mostraremos como:
-          "← Hacia Sala 306"
-        TODO plano, sin rotaciones raras.
-      -->
-
-      <!-- SALA 301 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt" id="marker-sala301">
-        <!-- Panel azul (como antes) -->
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
+      <!-- SOLO SALA 301 PARA PROBAR -->
+      <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt">
+        <!-- Cartel azul como el original -->
+        <a-plane position="0 0.8 0" rotation="-90 0 0"
+                 width="1.7" height="0.7" color="#1976D2">
           <a-text
-            value="Sala 301\nRealidad aumentada"
+            value="Sala 301\n--------------"
             align="center"
             width="1.6"
             color="#FFFFFF"
@@ -95,317 +34,22 @@
           </a-text>
         </a-plane>
 
-        <!-- Texto de dirección debajo (flecha + frase) -->
+        <!-- Flecha y texto debajo del cartel -->
+        <!-- IMPORTANTE:
+             - y = 0.2 (debajo del cartel)
+             - z = 0.01 (un poquito sobre el plano del marcador)
+             - misma rotación que el cartel: -90 0 0
+        -->
         <a-text
-          id="dir-sala301"
-          value=""
+          value="←  Hacia la sala 306"
           align="center"
-          width="2"
+          width="2.5"
           color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 302 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-302.patt" id="marker-sala302">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 302\nIntroducción a la graduación"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala302"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 303 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-303.patt" id="marker-sala303">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 303\nLaboratorio de computación"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala303"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 304 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-304.patt" id="marker-sala304">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 304\nAgronegocios digitales"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala304"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 305 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-305.patt" id="marker-sala305">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 305\nEstadística aplicada"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala305"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 306 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-306.patt" id="marker-sala306">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 306\nQuímica general"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala306"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 307 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-307.patt" id="marker-sala307">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 307\nGeografía física"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala307"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 308 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-308.patt" id="marker-sala308">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 308\nGeología histórica"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala308"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 309 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-309.patt" id="marker-sala309">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 309\nIntroducción a la geología"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala309"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
-          rotation="-90 0 0">
-        </a-text>
-      </a-marker>
-
-      <!-- SALA 310 -->
-      <a-marker type="pattern" url="src/patterns/pattern-pattern-310.patt" id="marker-sala310">
-        <a-plane position="0 0.8 0" rotation="-90 0 0" width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 310\nTaller de ética"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
-
-        <a-text
-          id="dir-sala310"
-          value=""
-          align="center"
-          width="2"
-          color="black"
-          position="0 0.1 0.01"
+          position="0 0.2 0.01"
           rotation="-90 0 0">
         </a-text>
       </a-marker>
 
     </a-scene>
-
-    <script>
-      const roomIds = [
-        'sala301','sala302',
-        'sala303','sala304',
-        'sala305','sala306',
-        'sala307','sala308',
-        'sala309','sala310'
-      ];
-
-      // Mapa físico simulado: impares derecha (x=2), pares izquierda (x=-2), z avanzando.
-      const locations = {
-        'sala301': { x:  2, z:  0 },
-        'sala302': { x: -2, z:  0 },
-
-        'sala303': { x:  2, z:  3 },
-        'sala304': { x: -2, z:  3 },
-
-        'sala305': { x:  2, z:  6 },
-        'sala306': { x: -2, z:  6 },
-
-        'sala307': { x:  2, z:  9 },
-        'sala308': { x: -2, z:  9 },
-
-        'sala309': { x:  2, z: 12 },
-        'sala310': { x: -2, z: 12 }
-      };
-
-      let currentDestination = null;
-
-      function updateDestination() {
-        const select = document.getElementById('destination');
-        currentDestination = select.value;
-        const instruction = document.getElementById('instruction');
-
-        // Limpio textos cuando cambio destino
-        roomIds.forEach(id => {
-          const dir = document.getElementById('dir-' + id);
-          if (dir) dir.setAttribute('value', '');
-        });
-
-        if (currentDestination) {
-          const label = currentDestination.replace('sala', 'Sala ');
-          instruction.innerText = "Escanea un marcador para ver la ruta hacia " + label;
-        } else {
-          instruction.innerText = "Selecciona una sala y escanea un marcador.";
-        }
-      }
-
-      function calculateDirection(currentId) {
-        if (!currentDestination) return;
-
-        const start = locations[currentId];
-        const end   = locations[currentDestination];
-        const dirEl = document.getElementById('dir-' + currentId);
-
-        if (!start || !end || !dirEl) return;
-
-        if (currentId === currentDestination) {
-          dirEl.setAttribute('value', "✔ Estás en la sala destino");
-          return;
-        }
-
-        const dx = end.x - start.x;
-        const dz = end.z - start.z;
-
-        let arrow = '';
-        // Decidimos flecha según qué cambio es mayor: horizontal (x) o a lo largo del pasillo (z)
-        if (Math.abs(dx) >= Math.abs(dz)) {
-          // movimiento principal izquierda / derecha
-          arrow = dx > 0 ? '→' : '←';
-        } else {
-          // movimiento principal adelante / atrás por el pasillo
-          arrow = dz > 0 ? '⬆' : '⬇';
-        }
-
-        const label = currentDestination.replace('sala', 'Sala ');
-        dirEl.setAttribute('value', arrow + " Hacia " + label);
-      }
-
-      // Conecto cada marcador con la lógica
-      window.addEventListener('DOMContentLoaded', () => {
-        roomIds.forEach(id => {
-          const marker = document.getElementById('marker-' + id);
-          if (marker) {
-            marker.addEventListener('markerFound', () => {
-              calculateDirection(id);
-            });
-          }
-        });
-      });
-    </script>
   </body>
 </html>
