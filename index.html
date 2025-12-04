@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Prueba Sala 301 simple</title>
+    <title>Prueba Sala 301 – cartel y flecha</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.2/aframe/build/aframe-ar.min.js"></script>
     <style>
-      body {
-        margin: 0;
-        overflow: hidden;
-      }
+      body { margin: 0; overflow: hidden; }
     </style>
   </head>
   <body>
@@ -20,34 +17,42 @@
       <a-entity camera></a-entity>
       <a-light type="ambient" color="#ffffff"></a-light>
 
-      <!-- SOLO SALA 301 PARA PROBAR -->
+      <!-- SOLO SALA 301 -->
       <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt">
-        <!-- Cartel azul como el original -->
-        <a-plane position="0 0.8 0" rotation="-90 0 0"
-                 width="1.7" height="0.7" color="#1976D2">
-          <a-text
-            value="Sala 301\n--------------"
-            align="center"
-            width="1.6"
-            color="#FFFFFF"
-            position="0 0 0.01">
-          </a-text>
-        </a-plane>
 
-        <!-- Flecha y texto debajo del cartel -->
-        <!-- IMPORTANTE:
-             - y = 0.2 (debajo del cartel)
-             - z = 0.01 (un poquito sobre el plano del marcador)
-             - misma rotación que el cartel: -90 0 0
+        <!--
+          Contenedor común:
+          - Se rota una sola vez (-90 0 0) para “acostarse” sobre el marcador
+          - Dentro van el cartel y el texto
         -->
-        <a-text
-          value="←  Hacia la sala 306"
-          align="center"
-          width="2.5"
-          color="black"
-          position="0 0.2 0.01"
-          rotation="-90 0 0">
-        </a-text>
+        <a-entity rotation="-90 0 0">
+
+          <!-- Cartel azul -->
+          <a-plane
+            position="0 0.6 0"
+            width="1.7"
+            height="0.7"
+            color="#1976D2"
+            side="double">
+            <a-text
+              value="Sala 301\n--------------"
+              align="center"
+              width="1.6"
+              color="#FFFFFF"
+              position="0 0 0.01">
+            </a-text>
+          </a-plane>
+
+          <!-- Flecha + texto DEBAJO del cartel, un poco MÁS CERCA de la cámara (z=0.08) -->
+          <a-text
+            value="←  Hacia la sala 306"
+            align="center"
+            width="2.5"
+            color="black"
+            position="0 0.1 0.08">
+          </a-text>
+
+        </a-entity>
       </a-marker>
 
     </a-scene>
