@@ -244,10 +244,24 @@ function updateDestination() {
 
 function getRoomInfo(roomId) {
   const num = parseInt(roomId.replace('sala', ''), 10);
-  const level = num - 301; // 301→0, 302→1, ..., 310→9
-  const isEven = (num % 2 === 0);
-  return { num, level, isEven };
+
+  // Mapa real del pasillo: lado e índice físico al caminar desde la 301
+  const positions = {
+    301: { side: "right", index: 0 },
+    302: { side: "left",  index: 1 },
+    303: { side: "left",  index: 2 },
+    304: { side: "right", index: 3 },
+    306: { side: "right", index: 4 }, // 306 antes que 305
+    305: { side: "left",  index: 5 },
+    307: { side: "left",  index: 6 },
+    308: { side: "right", index: 7 },
+    310: { side: "right", index: 8 }, // 310 antes que 309
+    309: { side: "left",  index: 9 }
+  };
+
+  return positions[num];
 }
+
 
 
 function calculateDirection(currentId) {
@@ -256,6 +270,7 @@ function calculateDirection(currentId) {
   const dirEl = document.getElementById('dir-' + currentId);
   const arrowImg = document.getElementById('arrow-img-' + currentId);
 
+  // Si ya estás en la sala destino
   if (currentId === currentDestination) {
     dirEl.setAttribute('value', "✔ Estás en la sala destino");
     arrowImg.setAttribute('visible', false);
@@ -264,16 +279,25 @@ function calculateDirection(currentId) {
 
   const curr = getRoomInfo(currentId);
   const dest = getRoomInfo(currentDestination);
+
+  // ¿El destino está más arriba en el pasillo?
+  const goingUp = dest.index > curr.index;
+
   let arrow;
+  // En un lado del pasillo la flecha "->" significa ir hacia arriba,
+  // en el otro lado significa ir hacia abajo (porque el marcador mira al revés).
+  if (curr.side === "left") {
+    arrow = goingUp ? "->" : "<-";
+  } else { // right
+    arrow = goingUp ? "<-" : "->";
+  }
 
-  if (curr.isEven) arrow = (dest.level > curr.level) ? '->' : '<-';
-  else arrow = (dest.level > curr.level) ? '<-' : '->';
-
-  dirEl.setAttribute('value', " Hacia " + currentDestination.replace("sala","Sala "));
+  dirEl.setAttribute('value', "Hacia " + currentDestination.replace("sala", "Sala "));
 
   arrowImg.setAttribute("src", arrow === "->" ? ARROW_RIGHT : ARROW_LEFT);
   arrowImg.setAttribute("visible", true);
 }
+
 
 window.addEventListener('DOMContentLoaded', () => {
   roomIds.forEach(id => {
