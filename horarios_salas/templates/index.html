@@ -351,7 +351,7 @@
     const API_BASE = getApiBase();
 
     try {
-      const resp = await fetch(`${API_BASE}/api/sala/${numeroSala}/`);
+      const resp = await fetch(`/api/sala/${numeroSala}/`, { cache: "no-store" });
       if (!resp.ok) {
         console.error("Error al obtener horario:", resp.status);
         return;
