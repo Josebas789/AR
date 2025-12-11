@@ -1,0 +1,165 @@
+[
+  {"model": "salas.sala", "pk": 1, "fields": {"numero": "301"}},
+  {"model": "salas.sala", "pk": 2, "fields": {"numero": "302"}},
+  {"model": "salas.sala", "pk": 3, "fields": {"numero": "303"}},
+  {"model": "salas.sala", "pk": 4, "fields": {"numero": "304"}},
+  {"model": "salas.sala", "pk": 5, "fields": {"numero": "305"}},
+  {"model": "salas.sala", "pk": 6, "fields": {"numero": "306"}},
+  {"model": "salas.sala", "pk": 7, "fields": {"numero": "307"}},
+  {"model": "salas.sala", "pk": 8, "fields": {"numero": "308"}},
+  {"model": "salas.sala", "pk": 9, "fields": {"numero": "309"}},
+  {"model": "salas.sala", "pk": 10, "fields": {"numero": "310"}},
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 1,
+      "dia_semana": 0,
+      "hora_inicio": "08:30",
+      "hora_termino": "10:00",
+      "asignatura": "Realidad Aumentada Basica",
+      "docente": "Prof. Perez"
+    }
+  },
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 1,
+      "dia_semana": 2,
+      "hora_inicio": "10:15",
+      "hora_termino": "11:45",
+      "asignatura": "Programacion AR",
+      "docente": "Prof. Carcamo"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 2,
+      "dia_semana": 1,
+      "hora_inicio": "08:30",
+      "hora_termino": "10:00",
+      "asignatura": "Introduccion a la Graduacion",
+      "docente": "Prof. Soto"
+    }
+  },
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 2,
+      "dia_semana": 4,
+      "hora_inicio": "12:00",
+      "hora_termino": "13:30",
+      "asignatura": "Comunicacion Oral",
+      "docente": "Prof. Alvarez"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 3,
+      "dia_semana": 0,
+      "hora_inicio": "14:30",
+      "hora_termino": "16:00",
+      "asignatura": "Algoritmos y Estructuras",
+      "docente": "Prof. Rivas"
+    }
+  },
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 3,
+      "dia_semana": 3,
+      "hora_inicio": "10:15",
+      "hora_termino": "11:45",
+      "asignatura": "Laboratorio de Computacion",
+      "docente": "Prof. Castillo"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 4,
+      "dia_semana": 2,
+      "hora_inicio": "08:30",
+      "hora_termino": "10:00",
+      "asignatura": "Agronegocios Digitales",
+      "docente": "Prof. Silva"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 5,
+      "dia_semana": 3,
+      "hora_inicio": "12:00",
+      "hora_termino": "13:30",
+      "asignatura": "Estadistica Aplicada",
+      "docente": "Prof. Andrade"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 6,
+      "dia_semana": 0,
+      "hora_inicio": "16:15",
+      "hora_termino": "17:45",
+      "asignatura": "Quimica General",
+      "docente": "Prof. Barria"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 7,
+      "dia_semana": 1,
+      "hora_inicio": "14:30",
+      "hora_termino": "16:00",
+      "asignatura": "Geografia Fisica",
+      "docente": "Prof. Molina"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 8,
+      "dia_semana": 4,
+      "hora_inicio": "08:30",
+      "hora_termino": "10:00",
+      "asignatura": "Geologia Historica",
+      "docente": "Prof. Torres"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 9,
+      "dia_semana": 3,
+      "hora_inicio": "10:15",
+      "hora_termino": "11:45",
+      "asignatura": "Introduccion a la Geologia",
+      "docente": "Prof. Munoz"
+    }
+  },
+
+  {
+    "model": "salas.horariosala",
+    "fields": {
+      "sala": 10,
+      "dia_semana": 2,
+      "hora_inicio": "12:00",
+      "hora_termino": "13:30",
+      "asignatura": "Taller de Etica",
+      "docente": "Prof. Herrera"
+    }
+  }
+]
