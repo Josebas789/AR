@@ -19,7 +19,7 @@
 
 <div id="ui-container">
   <div class="selector-box">
-    <label> Destino: </label>
+    <label>🎯 Destino: </label>
     <select id="destination" onchange="updateDestination()">
       <option value="">-- Selecciona una sala --</option>
       <option value="sala301">Sala 301</option>
@@ -75,13 +75,22 @@
     const ARROW_LEFT  = svgToBase64("arrow-left-svg");
   </script>
 
-  <!-- Markers with dark background carts -->
+  <!-- Generate markers -->
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-301.patt" id="marker-sala301">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala301" value="Sala 301
-REALIDAD AUMENTADA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0"
+         width="2.2"
+         height="0.9"
+         color="#000000"
+         opacity="0.95"
+         side="double">
+        <a-text id="header-sala301"
+          value="Sala 301\nREALIDAD AUMENTADA"
+          align="center"
+          width="2.4"
+          color="#FFFFFF"
+          position="0 0.16 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala301" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -94,9 +103,8 @@ REALIDAD AUMENTADA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-302.patt" id="marker-sala302">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala302" value="Sala 302
-INTRODUCCION A LA GRADUACION" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala302" value="Sala 302\nINTRODUCCION A LA GRADUACION" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala302" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -109,9 +117,8 @@ INTRODUCCION A LA GRADUACION" align="center" width="2.2" color="#FFFFFF" positio
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-303.patt" id="marker-sala303">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala303" value="Sala 303
-LABORATORIO DE COMPUTACION" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala303" value="Sala 303\nLABORATORIO DE COMPUTACION" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala303" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -124,9 +131,8 @@ LABORATORIO DE COMPUTACION" align="center" width="2.2" color="#FFFFFF" position=
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-304.patt" id="marker-sala304">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala304" value="Sala 304
-AGRONEGOCIOS DIGITALES" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala304" value="Sala 304\nAGRONEGOCIOS DIGITALES" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala304" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -139,9 +145,8 @@ AGRONEGOCIOS DIGITALES" align="center" width="2.2" color="#FFFFFF" position="0 0
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-305.patt" id="marker-sala305">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala305" value="Sala 305
-ESTADISTICA APLICADA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala305" value="Sala 305\nESTADISTICA APLICADA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala305" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -154,9 +159,8 @@ ESTADISTICA APLICADA" align="center" width="2.2" color="#FFFFFF" position="0 0.1
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-306.patt" id="marker-sala306">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala306" value="Sala 306
-QUIMICA GENERAL" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala306" value="Sala 306\nQUIMICA GENERAL" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala306" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -169,9 +173,8 @@ QUIMICA GENERAL" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.0
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-307.patt" id="marker-sala307">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala307" value="Sala 307
-GEOGRAFIA FISICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala307" value="Sala 307\nGEOGRAFIA FISICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala307" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -184,9 +187,8 @@ GEOGRAFIA FISICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-308.patt" id="marker-sala308">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala308" value="Sala 308
-GEOLOGIA HISTORICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala308" value="Sala 308\nGEOLOGIA HISTORICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala308" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -199,9 +201,8 @@ GEOLOGIA HISTORICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-309.patt" id="marker-sala309">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala309" value="Sala 309
-INTRODUCCION A LA GEOLOGIA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala309" value="Sala 309\nINTRODUCCION A LA GEOLOGIA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala309" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -214,9 +215,8 @@ INTRODUCCION A LA GEOLOGIA" align="center" width="2.2" color="#FFFFFF" position=
 
   <a-marker type="pattern" url="src/patterns/pattern-pattern-310.patt" id="marker-sala310">
     <a-entity rotation="-90 0 0">
-      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#000000" opacity="0.95" side="double">
-        <a-text id="header-sala310" value="Sala 310
-TALLER DE ETICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
+      <a-plane position="0 0.6 0" width="1.8" height="0.7" color="#1976D2" side="double">
+        <a-text id="header-sala310" value="Sala 310\nTALLER DE ETICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.01"></a-text>
       </a-plane>
 
       <a-text id="dir-sala310" value="" align="center" width="3" color="#FFFFFF" position="0 0.1 0.08"></a-text>
@@ -272,40 +272,24 @@ TALLER DE ETICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.0
   }
 
   function normalizarTextoCartel(texto) {
-    if (typeof texto !== 'string') return '';
+  if (typeof texto !== 'string') return '';
 
-    let s = texto;
+  // 1) Normalizar y descomponer Unicode
+  let s = texto.normalize("NFKD");
 
-    // Romper ligaduras tipográficas (ﬁ, ﬂ, etc.) por si acaso
-    s = s
-      .replace(/\uFB00/g, "ff")
-      .replace(/\uFB01/g, "fi")
-      .replace(/\uFB02/g, "fl")
-      .replace(/\uFB03/g, "ffi")
-      .replace(/\uFB04/g, "ffl");
+  // 2) Quitar diacríticos
+  s = s.replace(/[\u0300-\u036f]/g, "");
 
-    // Normalizar y quitar diacríticos
-    s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  // 3) Eliminar cualquier carácter NO ASCII (A-Z 0-9 puntuación básica)
+  s = s.replace(/[^A-Za-z0-9 .,:\-\/\n]/g, "");
 
-    // Reemplazar ñ / Ñ por N
-    s = s.replace(/ñ/g, 'n').replace(/Ñ/g, 'N');
+  // 4) Reemplazar múltiples espacios por uno solo
+  s = s.replace(/\s+/g, " ");
 
-    // Pasar a mayúsculas
-    let upper = s.toUpperCase();
+  // 5) Poner en mayúsculas
+  return s.toUpperCase().trim();
+}
 
-    // Filtrar a ASCII visible
-    let limpio = '';
-    for (const ch of upper) {
-      const code = ch.charCodeAt(0);
-      if (code >= 32 && code <= 126) {
-        limpio += ch;
-      } else {
-        limpio += ' ';
-      }
-    }
-
-    return limpio;
-  }
 
   function calculateDirection(currentId) {
     if (!currentDestination) return;
@@ -389,7 +373,7 @@ TALLER DE ETICA" align="center" width="2.2" color="#FFFFFF" position="0 0.12 0.0
     }
   }
 
-  // Vincular eventos de marcadores
+  // 🔁 Vincular los eventos de los marcadores (sin depender de DOMContentLoaded)
   roomIds.forEach(id => {
     const marker = document.getElementById("marker-" + id);
     if (marker) {

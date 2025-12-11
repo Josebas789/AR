@@ -1,0 +1,12 @@
+Tutorial. 
+
+Django hay que levantarlo con python manage.py runserver 0.0.0.0:8000
+Instalar Ngrok  https://ngrok.com/
+Crear cuenta en Ngrok
+Obtener el authtoken Abrir CMD, pegar y ejecutar el comando. (Creo que esto solo se hace la primera vez, después parece que queda para siempre)
+Levantar el servidor local del prototipo
+	- Abrir una terminal en la carpeta donde está el archivo index.html
+	- Ejecutas python -m http.server 8080
+Crear un túnel HTTPS con Ngrok
+	- Otra terminal y ejecutar ngrok http 8080
+	- Esto da una url que se supone se puede abrir desde cualquier lugar mientras los server del pc estén corriendo
